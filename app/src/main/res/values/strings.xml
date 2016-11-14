@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">GRead</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="fb_login_protocol_scheme">fbAPP_ID</string>
+    <string name="facebook_app_id">286084328452260</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string-array name="page_list">
+        <item>Commas and HalfStrokes</item>
+        <item>Terribly tiny tales</item>
+        <item>Scribbled Stories</item>
+        <item>Scrawled Stories</item>
+        <item>Reader\'s Guild</item>
+        <item>Paperless Postcards</item>
+        <item>Calvin and Hobbes</item>
+        <item>Gentleman\'s armchair</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="title_activity_test">TestActivity</string>
+</resources>

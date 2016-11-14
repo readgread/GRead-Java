@@ -1,0 +1,140 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<RelativeLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height = "match_parent"
+    android:paddingLeft= "@dimen/activity_horizontal_margin"
+    android:paddingRight = "@dimen/activity_horizontal_margin"
+    android:paddingTop = "@dimen/activity_vertical_margin"
+    android:paddingBottom = "@dimen/activity_vertical_margin"
+    android:background="@drawable/bg_3"
+    tools:context="com.example.gread.gread.MainActivity">
+
+
+
+
+    <TextView
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:text = "GRead"
+        android:id = "@+id/logo_gread"
+        android:layout_centerHorizontal = "true"
+        android:textColor = "#1cc7b6"
+        android:textSize = "50dp"
+        android:layout_marginBottom="-10dp"
+        android:shadowColor="#004D40"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        android:gravity="center"/>
+
+    <TextView android:text = "Greed to read"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/caption_text"
+        android:textSize = "15dp"
+        android:layout_margin="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/logo_gread"
+        android:layout_marginBottom="30dp"
+        android:textColor="#00a390"
+        android:shadowRadius="1"
+        android:shadowDy="1"
+        android:shadowDx="1"
+        android:shadowColor="#004D40"
+        android:layout_marginTop="-5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="60dp"
+        android:layout_below="@id/caption_text"
+        android:id="@+id/blank"
+        tools:ignore="InvalidId" />
+
+
+
+    <EditText
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/username_login"
+        android:hint = "Username"
+        android:focusable = "true"
+        android:textColorHighlight = "#2196F3"
+        android:textColorHint = "#377d77"
+        android:layout_below = "@+id/blank"
+        android:layout_alignParentLeft = "true"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:layout_margin="10dp"
+        android:layout_marginTop="100dp"
+        android:textColor="#4DB6AC"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+
+        android:layout_below="@+id/logo_gread"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password_login"
+        android:layout_below="@+id/username_login"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/username"
+        android:layout_alignEnd="@+id/username"
+        android:textColorHint="#377d77"
+        android:hint="Password"
+        android:layout_margin="10dp"
+        android:textColor="#4DB6AC"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"/>
+
+
+
+
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="Sign up! "
+        android:id="@+id/register_button_login"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/password_login"
+        android:layout_marginTop="15dp"
+        android:textColor="#1cc7b6"
+        android:textSize="15dp"
+        android:background="@drawable/roundbutton"
+        android:elevation="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_toRightOf="@+id/sign_button_login"
+        />
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="Cue me in! "
+        android:id="@+id/sign_button_login"
+        android:layout_below="@+id/password_login"
+        android:layout_marginTop="15dp"
+        android:textColor="#1cc7b6"
+        android:textSize="15dp"
+        android:background="@drawable/roundbutton"
+        android:elevation="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        />
+
+
+
+</RelativeLayout>
