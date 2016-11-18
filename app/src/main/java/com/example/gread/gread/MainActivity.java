@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -49,27 +47,27 @@ public class MainActivity extends FragmentActivity
 
 
 
-        logoGread = (TextView) findViewById(R.id.logo_gread);
-        Typeface logo_font = Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
-        logoGread.setTypeface(logo_font);
+//        logoGread = (TextView) findViewById(R.id.logo_gread);
+//        Typeface logo_font = Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
+//        logoGread.setTypeface(logo_font);
+//
+//        caption = (TextView)findViewById(R.id.caption_text);
+//        Typeface captionFont = Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
+//        caption.setTypeface(captionFont);
 
-        caption = (TextView)findViewById(R.id.caption_text);
-        Typeface captionFont = Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
-        caption.setTypeface(captionFont);
-
-        Button cue = (Button) findViewById(R.id.sign_button_login);
-        Typeface cue_font= Typeface.createFromAsset(getAssets(), "fonts/Port.ttf");
-        cue.setTypeface(cue_font);
-        cue.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                Intent sub = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(sub);
-                System.out.println("Done");
-                // Perform action on click
-            }
-        });
+//        Button cue = (Button) findViewById(R.id.sign_button_login);
+//
+//        Typeface cue_font= Typeface.createFromAsset(getAssets(), "fonts/Port.ttf");
+//        cue.setTypeface(cue_font);
+//        cue.setOnClickListener(new View.OnClickListener()
+//        {
+//            public void onClick(View v)
+//            {
+//
+//
+//                // Perform action on click
+//            }
+//        });
 
         Button register = (Button) findViewById(R.id.register_button_login);
         Typeface register_font= Typeface.createFromAsset(getAssets(), "fonts/Port.ttf");
@@ -114,11 +112,30 @@ public class MainActivity extends FragmentActivity
 
 
 }
-    public View onCreateView(
-            LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_home, container, false);
+
+
+
+    public void validateLogin(View view)
+    {
+        userName = (EditText)findViewById(R.id.username_login);
+        password=(EditText)findViewById(R.id.password_login);
+        String uname=userName.getText().toString();
+        String pass=password.getText().toString();
+        if(uname.equals("shubh") && pass.equals("shubh"))
+        {
+            Intent loginIntent = new Intent(this, HomeActivity.class);
+            startActivity(loginIntent);
+            //System.out.println("Done");
+        }
+        else
+            MainActivity.super.onRestart();
+
+    }
+//    public View onCreateView(
+//            LayoutInflater inflater,
+//            ViewGroup container,
+//            Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.activity_home, container, false);
 
         //loginButton = (LoginButton) view.findViewById(R.id.button);
         //loginButton.setReadPermissions("email");
@@ -146,8 +163,8 @@ public class MainActivity extends FragmentActivity
 //                // App code
 //            }
 //        });
-        return view;
-    }
+//        return view;
+//    }
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        callbackManager.onActivityResult(requestCode, resultCode, data);
