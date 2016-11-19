@@ -15,7 +15,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.widget.LoginButton;
-
+import com.mongodb.async.client.MongoClient;
+import com.mongodb.async.client.MongoClients;
+import com.mongodb.async.client.MongoDatabase;
 
 public class MainActivity extends FragmentActivity
 {
@@ -27,8 +29,8 @@ public class MainActivity extends FragmentActivity
     private static final int REQUEST_SIGNUP = 0;
     TextView logoGread,caption;
     EditText userName, password;
-
-
+//    MongoClient mc;
+//    MongoDatabase mdb;
 
 
 
@@ -44,6 +46,10 @@ public class MainActivity extends FragmentActivity
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        MongoClient mc= MongoClients.create();
+        MongoDatabase mdb=mc.getDatabase("test");
+ //       mdb=mc.getDatabase("test");
+        
 
 
 
@@ -117,6 +123,15 @@ public class MainActivity extends FragmentActivity
 
     public void validateLogin(View view)
     {
+//        FindIterable<Document> iterable= mdb.getCollection("restaurants").find(new Document("cuisine", "Italian").append("address.zipcode","10075"));
+//        iterable.forEach(new Block<Document>()
+//        {
+//            @Override
+//            public void apply(Document document)
+//            {
+//                System.out.println(document);
+//            }
+//        });
         userName = (EditText)findViewById(R.id.username_login);
         password=(EditText)findViewById(R.id.password_login);
         String uname=userName.getText().toString();
