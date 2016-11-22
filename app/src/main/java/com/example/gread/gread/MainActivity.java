@@ -11,20 +11,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.widget.LoginButton;
+//import com.facebook.CallbackManager;
+//import com.facebook.FacebookSdk;
+//import com.facebook.appevents.AppEventsLogger;
+//import com.facebook.login.widget.LoginButton;
 import com.mongodb.async.client.MongoClient;
 import com.mongodb.async.client.MongoClients;
 import com.mongodb.async.client.MongoDatabase;
 
 public class MainActivity extends FragmentActivity
 {
-    CallbackManager callbackManager;
+//    CallbackManager callbackManager;
     private View view;
     Button button;
-    LoginButton loginButton;
+//    LoginButton loginButton;
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     TextView logoGread,caption;
@@ -37,9 +37,9 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        AppEventsLogger.activateApp(this);
-        callbackManager = CallbackManager.Factory.create();
+//        FacebookSdk.sdkInitialize(this.getApplicationContext());
+//        AppEventsLogger.activateApp(this);
+//        callbackManager = CallbackManager.Factory.create();
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -49,7 +49,7 @@ public class MainActivity extends FragmentActivity
         MongoClient mc= MongoClients.create();
         MongoDatabase mdb=mc.getDatabase("test");
  //       mdb=mc.getDatabase("test");
-        
+
 
 
 
