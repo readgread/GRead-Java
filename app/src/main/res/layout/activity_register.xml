@@ -9,7 +9,7 @@
     android:paddingRight = "@dimen/activity_horizontal_margin"
     android:paddingTop = "@dimen/activity_vertical_margin"
     android:paddingBottom = "@dimen/activity_vertical_margin"
-    android:background="@drawable/bg_3"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.example.gread.gread.MainActivity">
 
 
@@ -21,7 +21,7 @@
         android:text = "GRead"
         android:id = "@+id/logo_gread"
         android:layout_centerHorizontal = "true"
-        android:textColor = "#1cc7b6"
+        android:textColor = "@color/colorAccent"
         android:textSize = "50dp"
         android:layout_marginBottom="-10dp"
         android:shadowColor="#004D40"
@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/logo_gread"
         android:layout_marginBottom="30dp"
-        android:textColor="#00a390"
+        android:textColor="@color/colorAccent"
         android:shadowRadius="1"
         android:shadowDy="1"
         android:shadowDx="1"
@@ -52,28 +52,28 @@
     <EditText
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:id = "@+id/username"
-        android:hint = "Username"
+        android:id = "@+id/firstname"
+        android:hint = "First Name"
         android:focusable = "true"
         android:textColorHighlight = "#2196F3"
-        android:textColorHint = "#377d77"
+        android:textColorHint = "@color/colorAccent"
         android:layout_below = "@+id/caption_text"
         android:layout_alignParentLeft = "true"
         android:layout_alignParentStart = "true"
         android:layout_alignParentRight = "true"
         android:layout_alignParentEnd = "true"
         android:layout_margin="10dp"
-        android:textColor="#4DB6AC"/>
+        android:textColor="@color/colorAccent"/>
 
     <EditText
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:id = "@+id/email"
-        android:hint = "Email"
+        android:id = "@+id/lastname"
+        android:hint = "Last Name"
         android:focusable = "true"
         android:textColorHighlight = "#2196F3"
-        android:textColorHint = "#377d77"
-        android:layout_below = "@+id/username"
+        android:textColorHint = "@color/colorAccent"
+        android:layout_below = "@+id/firstname"
         android:layout_alignParentLeft = "true"
         android:layout_alignParentStart = "true"
         android:layout_alignParentRight = "true"
@@ -84,16 +84,27 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:textColor="#4DB6AC"
+        android:textColor="@color/colorAccent"
         />
 
-    <ImageView
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-
-        android:layout_below="@+id/logo_gread"
-        android:layout_centerHorizontal="true" />
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/email"
+        android:layout_below="@+id/lastname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/firstname"
+        android:layout_alignEnd="@+id/firstname"
+        android:textColorHint="@color/colorAccent"
+        android:hint="Email"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -104,14 +115,14 @@
         android:layout_below="@+id/email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/username"
-        android:layout_alignEnd="@+id/username"
-        android:textColorHint="#377d77"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:layout_alignRight="@+id/email"
+        android:layout_alignEnd="@+id/email"
+        android:textColorHint="@color/colorAccent"
         android:hint="Password"
         android:layout_margin="10dp"
-        android:textColor="#4DB6AC"
-        android:layout_alignParentRight = "true"
-        android:layout_alignParentEnd = "true"/>
+        android:textColor="@color/colorAccent"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -120,34 +131,16 @@
         android:ems="10"
         android:id="@+id/repassword"
         android:layout_below="@+id/password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight = "true"
-        android:layout_alignParentEnd = "true"
-        android:layout_alignRight="@+id/password"
-        android:layout_alignEnd="@+id/password"
-        android:textColorHint="#377d77"
-        android:hint="Re-type Password"
-        android:layout_margin="10dp"
-        android:textColor="#4DB6AC"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/phone"
-        android:layout_below="@+id/repassword"
         android:layout_alignParentLeft = "true"
         android:layout_alignParentStart = "true"
         android:layout_alignParentRight = "true"
         android:layout_alignParentEnd = "true"
         android:layout_alignRight="@+id/password"
         android:layout_alignEnd="@+id/password"
-        android:textColorHint="#377d77"
-        android:hint="Mobile no."
+        android:textColorHint="@color/colorAccent"
+        android:hint="Re-type Password"
         android:layout_margin="10dp"
-        android:textColor="#4DB6AC"/>
+        android:textColor="@color/colorAccent"/>
 
 
 
@@ -159,12 +152,13 @@
         android:text="Register me! "
         android:id="@+id/register_button"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/phone"
+        android:layout_below="@+id/repassword"
         android:layout_marginTop="15dp"
-        android:textColor="#1cc7b6"
+        android:textColor="#FFFFFF"
         android:textSize="15dp"
         android:background="@drawable/roundbutton"
         android:elevation="10dp"
+        android:onClick="setRegisterButton"
         />
 
 

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '25'
 
     defaultConfig {
         applicationId "com.example.gread.gread"
@@ -32,13 +32,16 @@ repositories {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+  //  testCompile 'junit:junit:4.12'
+//    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.android.support:appcompat-v7:24.0.+'
+    compile 'org.mongodb:mongodb-driver:3.4.0'
+    compile 'com.stormpath.sdk:stormpath-sdk-android:1.0.0'
 
-    compile files('libs/aws-android-sdk-core-2.3.3.jar')
-    compile files('libs/aws-android-sdk-ddb-2.3.3.jar')
-    compile files('libs/aws-android-sdk-s3-2.3.3.jar')
-    compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.3.2'
+//    compile files('libs/aws-android-sdk-core-2.3.3.jar')
+//    compile files('libs/aws-android-sdk-ddb-2.3.3.jar')
+//    compile files('libs/aws-android-sdk-s3-2.3.3.jar')
+//    compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.3.2'
 
+  //  compile 'com.android.support:design:25.0.0'
 }
