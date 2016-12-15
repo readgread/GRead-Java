@@ -40,17 +40,17 @@
         <!--</activity>-->
 
 
-        <service
-            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
-            android:enabled="true" />
+        <!--<service-->
+            <!--android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"-->
+            <!--android:enabled="true" />-->
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
+        <!--<meta-data-->
+            <!--android:name="com.facebook.sdk.ApplicationId"-->
+            <!--android:value="@string/facebook_app_id" />-->
 
-        <activity
-            android:name=".TestActivity"
-            android:label="@string/title_activity_test" />
+        <!--<activity-->
+            <!--android:name=".TestActivity"-->
+            <!--android:label="@string/title_activity_test" />-->
         <!--<activity android:name=".SignUpActivity" />-->
         <activity android:name=".RegisterActivity"></activity>
     </application>
