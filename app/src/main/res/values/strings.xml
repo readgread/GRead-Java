@@ -16,7 +16,6 @@
     <string name="action_settings">Settings</string>
     <string-array name="page_list">
         <item>Commas and HalfStrokes</item>
-        <item>Scribbled Stories</item>
         <item>Scrawled Stories</item>
         <item>Reader\'s Guild</item>
         <item>Paperless Postcards</item>

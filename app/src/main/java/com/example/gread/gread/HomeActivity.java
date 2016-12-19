@@ -50,9 +50,8 @@ public class HomeActivity extends AppCompatActivity
 
 
         NavDrawerItem[] nav = new NavDrawerItem[] { new NavDrawerItem(R.drawable.comma,"Commas and HalfStrokes"),
-                                                    new NavDrawerItem(R.drawable.scribbled,"Scribbled Stories"),
-                                                    new NavDrawerItem(R.drawable.reader,"Reader's Guild"),
-                                                    new NavDrawerItem(R.drawable.paper,"Paperless Postcards")};
+                                                    new NavDrawerItem(R.drawable.scrawled,"Scrawled Stories"),
+                                                    new NavDrawerItem(R.drawable.reader,"Reader's Guild")};
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener

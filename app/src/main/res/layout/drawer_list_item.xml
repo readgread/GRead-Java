@@ -22,7 +22,7 @@
         android:textColorHighlight="#fff"
         android:gravity="center_vertical"
         android:paddingRight="16dp"
-        android:textColor="#1cc7b6"
+        android:textColor="@color/colorText"
         android:background="?android:attr/activatedBackgroundIndicator"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:layout_toRightOf="@+id/icon"/>
