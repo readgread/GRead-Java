@@ -16,13 +16,14 @@
     <string name="action_settings">Settings</string>
     <string-array name="page_list">
         <item>Commas and HalfStrokes</item>
-        <item>Terribly tiny tales</item>
-        <item>Scribbled Stories</item>
         <item>Scrawled Stories</item>
         <item>Reader\'s Guild</item>
         <item>Paperless Postcards</item>
         <item>Calvin and Hobbes</item>
         <item>Gentleman\'s armchair</item>
+    </string-array>
+    <string-array name="page_icons">
+        <item>@drawable/scribbled</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

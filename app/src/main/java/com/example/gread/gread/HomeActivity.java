@@ -49,11 +49,17 @@ public class HomeActivity extends AppCompatActivity
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 
+        NavDrawerItem[] nav = new NavDrawerItem[] { new NavDrawerItem(R.drawable.comma,"Commas and HalfStrokes"),
+                                                    new NavDrawerItem(R.drawable.scrawled,"Scrawled Stories"),
+                                                    new NavDrawerItem(R.drawable.reader,"Reader's Guild")};
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPageTitles));
+
+
+        //mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+          //      R.layout.drawer_list_item, mPageTitles));
+        mDrawerList.setAdapter(new NavDrawerAdapter(this, R.layout.drawer_list_item, nav));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
