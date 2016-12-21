@@ -1,47 +1,66 @@
 package com.example.gread.gread;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Typeface;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.stormpath.sdk.Stormpath;
+import com.stormpath.sdk.StormpathCallback;
+import com.stormpath.sdk.models.RegisterParams;
+import com.stormpath.sdk.models.StormpathError;
 
 public class RegisterActivity extends Activity {
 
-    TextView logoGread,caption;
-    Button registerButton;
+
+    EditText firstName, eMail, passWord, rePassword, lastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+    }
 
-        logoGread = (TextView) findViewById(R.id.logo_gread);
-        Typeface logo_font = Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
-        logoGread.setTypeface(logo_font);
 
-        caption = (TextView) findViewById(R.id.caption_text);
-        Typeface caption_font = Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
-        caption.setTypeface(caption_font);
-
-        registerButton = (Button) findViewById(R.id.register_button);
-        Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/Port.ttf");
-        registerButton.setTypeface(button_font);
-        registerButton.setOnClickListener(new View.OnClickListener()
+    public void setRegisterButton(View v)
+    {
+        firstName = (EditText) findViewById(R.id.firstname);
+        eMail = (EditText) findViewById(R.id.email);
+        passWord = (EditText) findViewById(R.id.password);
+        rePassword = (EditText) findViewById(R.id.repassword);
+        lastName = (EditText) findViewById(R.id.lastname);
+        String pass = passWord.getText().toString();
+        String repass = rePassword.getText().toString();
+        String lname = lastName.getText().toString();
+        String email = eMail.getText().toString();
+        String fname = firstName.getText().toString();
+        if(pass.equals(repass))
         {
-            public void onClick(View v)
-            {
-                Intent sub = new Intent(RegisterActivity.this, HomeActivity.class);
-                startActivity(sub);
-                System.out.println("Done");
-                // Perform action on click
-            }
-        });
+            RegisterParams registerParams = new RegisterParams(fname, lname, email, pass);
 
+            Stormpath.register(registerParams, new StormpathCallback<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Context context = getApplicationContext();
+                    CharSequence charSequence = "Registration Successful";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast.makeText(context, charSequence, duration).show();
 
+                }
 
+                @Override
+                public void onFailure(StormpathError error) {
+                    System.out.println(error);
+                    Context context = getApplicationContext();
+                    CharSequence charSequence = "Registration Unsuccessful";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast.makeText(context, charSequence, duration).show();
+
+                }
+            });
+        }
     }
 
 
