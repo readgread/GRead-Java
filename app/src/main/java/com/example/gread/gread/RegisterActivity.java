@@ -2,9 +2,11 @@ package com.example.gread.gread;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stormpath.sdk.Stormpath;
@@ -16,11 +18,20 @@ public class RegisterActivity extends Activity {
 
 
     EditText firstName, eMail, passWord, rePassword, lastName;
+    TextView logo, caption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        logo=(TextView)findViewById(R.id.logo_gread);
+        caption=(TextView)findViewById(R.id.caption_text);
+
+        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/Meltix.otf");
+        logo.setTypeface(face);
+
+        Typeface face1= Typeface.createFromAsset(getAssets(), "fonts/Port.ttf");
+        caption.setTypeface(face1);
     }
 
 
