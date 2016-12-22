@@ -1,8 +1,5 @@
 package com.example.gread.gread;
 
-import java.util.Locale;
-
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
@@ -20,10 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 
 public class HomeActivity extends AppCompatActivity
@@ -212,5 +210,13 @@ public class HomeActivity extends AppCompatActivity
             getActivity().setTitle(page);
             return rootView;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
