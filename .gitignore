@@ -19,3 +19,5 @@ facebook-android-sdk-4.3.0/*
 gradle/wrapper/gradle-wrapper.properties
 
 .idea/modules.xml
+
+app/src/debug/google-services.json
