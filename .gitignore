@@ -14,6 +14,8 @@ facebook-android-sdk-4.3.0/*
 
 .idea/modules.xml
 
+.idea/misc.xml
+
 gradle/wrapper/gradle-wrapper.properties
 
 .idea/modules.xml
