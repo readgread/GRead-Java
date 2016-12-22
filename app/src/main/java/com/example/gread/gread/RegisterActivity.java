@@ -1,18 +1,12 @@
 package com.example.gread.gread;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.stormpath.sdk.Stormpath;
-import com.stormpath.sdk.StormpathCallback;
-import com.stormpath.sdk.models.RegisterParams;
-import com.stormpath.sdk.models.StormpathError;
 
 public class RegisterActivity extends Activity {
 
@@ -49,29 +43,7 @@ public class RegisterActivity extends Activity {
         String fname = firstName.getText().toString();
         if(pass.equals(repass))
         {
-            RegisterParams registerParams = new RegisterParams(fname, lname, email, pass);
-
-            Stormpath.register(registerParams, new StormpathCallback<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Context context = getApplicationContext();
-                    CharSequence charSequence = "Registration Successful";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast.makeText(context, charSequence, duration).show();
-
-                }
-
-                @Override
-                public void onFailure(StormpathError error) {
-                    System.out.println(error);
-                    Context context = getApplicationContext();
-                    CharSequence charSequence = "Registration Unsuccessful";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast.makeText(context, charSequence, duration).show();
-
-                }
-            });
-        }
+                    }
     }
 
 
