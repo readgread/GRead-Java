@@ -9,7 +9,7 @@
     android:paddingRight = "@dimen/activity_horizontal_margin"
     android:paddingTop = "@dimen/activity_vertical_margin"
     android:paddingBottom = "@dimen/activity_vertical_margin"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/bg_4"
     tools:context="com.example.gread.gread.MainActivity">
 
 
@@ -21,7 +21,7 @@
         android:text = "GRead"
         android:id = "@+id/logo_gread"
         android:layout_centerHorizontal = "true"
-        android:textColor = "@color/colorAccent"
+        android:textColor = "@color/colorLogo"
         android:textSize = "50dp"
         android:layout_marginBottom="10dp"
         android:shadowColor="@color/colorPrimaryDark"
@@ -36,10 +36,10 @@
         android:id = "@+id/caption_text"
         android:textSize = "15dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="-20dp"
         android:layout_below="@+id/logo_gread"
-
-        android:layout_marginBottom="50dp"
-        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/colorCaption"
         android:shadowRadius="1"
         android:shadowDy="1"
         android:shadowDx="1"
@@ -53,14 +53,15 @@
         android:hint = "Username"
         android:focusable = "true"
         android:textColorHighlight = "#2196F3"
-
-        android:textColorHint = "@color/colorAccent"
-        android:layout_below = "@+id/logo_gread"
+        android:textColorHint = "@color/colorTextHint"
+        android:layout_below = "@+id/caption_text"
         android:layout_alignParentLeft = "true"
         android:layout_alignParentStart = "true"
         android:layout_alignParentRight = "true"
         android:layout_alignParentEnd = "true"
         android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:textColor="@color/colorText"/>
 
 
@@ -73,12 +74,12 @@
         android:layout_below="@+id/username_login"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/username"
-        android:layout_alignEnd="@+id/username"
-
-        android:textColorHint="@color/colorAccent"
+        android:layout_alignRight="@+id/username_login"
+        android:layout_alignEnd="@+id/username_login"
+        android:textColorHint="@color/colorTextHint"
         android:hint="Password"
-        android:textColor="#4DB6AC"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorText"
 
         android:layout_alignParentRight = "true"
         android:layout_alignParentEnd = "true"/>
@@ -86,15 +87,15 @@
 
 
     <Button
-        android:layout_width="130dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="Sign up! "
         android:id="@+id/register_button_login"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/password_login"
 
-        android:layout_marginTop="55dp"
-        android:textColor="#FFFFFF"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorText"
 
         android:textSize="15dp"
         android:background="@drawable/roundbutton"
@@ -103,20 +104,19 @@
         android:layout_toRightOf="@+id/sign_button_login" />
 
     <Button
-        android:layout_width="130dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/sign_button_login"
         android:layout_below="@+id/password_login"
-
-        android:layout_marginTop="55dp"
-        android:textColor="#FFFFFF"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorText"
 
         android:textSize="15dp"
         android:background="@drawable/roundbutton"
         android:elevation="10dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="20dp"
         android:onClick="validateLogin" />
 
 

@@ -5,7 +5,10 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
         <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.14.1" />
+=======
+>>>>>>> e75d8d27fded92153c601e9625b21dedc995b042
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -13,7 +16,13 @@
             <option value="$PROJECT_DIR$/facebook" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/facebook" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

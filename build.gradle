@@ -6,7 +6,11 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:2.2.3'
+=======
+        classpath 'com.android.tools.build:gradle:2.1.2'
+>>>>>>> e75d8d27fded92153c601e9625b21dedc995b042
 
 
 
