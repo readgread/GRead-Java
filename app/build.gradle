@@ -1,5 +1,7 @@
+//noinspection GradleDependency
+//noinspection GradleCompatible
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 24
@@ -37,11 +39,13 @@ dependencies {
 //    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.android.support:appcompat-v7:24.0.+'
     compile 'com.google.android.gms:play-services-auth:9.0.0'
+    compile 'com.google.firebase:firebase-core:9.0.0'
 
 //    compile files('libs/aws-android-sdk-core-2.3.3.jar')
 //    compile files('libs/aws-android-sdk-ddb-2.3.3.jar')
 //    compile files('libs/aws-android-sdk-s3-2.3.3.jar')
 //    compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.3.2'
 
-  //  compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:design:24.0.0'
 }
+apply plugin: 'com.google.gms.google-services'
