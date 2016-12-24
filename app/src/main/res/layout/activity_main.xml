@@ -45,80 +45,14 @@
         android:shadowDx="1"
         android:shadowColor="@color/colorPrimaryDark" />
 
-
-    <EditText
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:id = "@+id/username_login"
-        android:hint = "Username"
-        android:focusable = "true"
-        android:textColorHighlight = "#2196F3"
-        android:textColorHint = "@color/colorTextHint"
-        android:layout_below = "@+id/caption_text"
-        android:layout_alignParentLeft = "true"
-        android:layout_alignParentStart = "true"
-        android:layout_alignParentRight = "true"
-        android:layout_alignParentEnd = "true"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textColor="@color/colorText"/>
-
-
-
-    <EditText
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:id="@+id/password_login"
-        android:layout_below="@+id/username_login"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/username_login"
-        android:layout_alignEnd="@+id/username_login"
-        android:textColorHint="@color/colorTextHint"
-        android:hint="Password"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorText"
-
-        android:layout_alignParentRight = "true"
-        android:layout_alignParentEnd = "true"/>
-
-
-
-    <Button
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:text="Sign up! "
-        android:id="@+id/register_button_login"
+        android:layout_below="@+id/caption_text"
+        android:elevation="20sp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/password_login"
-
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorText"
-
-        android:textSize="15dp"
-        android:background="@drawable/roundbutton"
-        android:elevation="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_toRightOf="@+id/sign_button_login" />
-
-    <Button
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/sign_button_login"
-        android:layout_below="@+id/password_login"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorText"
-
-        android:textSize="15dp"
-        android:background="@drawable/roundbutton"
-        android:elevation="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="20dp"
-        android:onClick="validateLogin" />
-
+        android:layout_centerVertical="true"/>
 
 
 </RelativeLayout>
