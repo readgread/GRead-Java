@@ -17,11 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Locale;
 
 
 public class HomeActivity extends AppCompatActivity
@@ -203,10 +201,8 @@ public class HomeActivity extends AppCompatActivity
             View rootView = inflater.inflate(R.layout.fragment_page, container, false);
             int i = getArguments().getInt(ARG_PAGE_NUMBER);
             String page = getResources().getStringArray(R.array.page_list)[i];
-
-            int imageId = getResources().getIdentifier(page.toLowerCase(Locale.getDefault()),
-                    "drawable", getActivity().getPackageName());
-            ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
+            ((TextView)rootView.findViewById(R.id.name)).setText("Hello World!");
+            ((TextView)rootView.findViewById(R.id.email)).setText("How art thou?");
             getActivity().setTitle(page);
             return rootView;
         }
