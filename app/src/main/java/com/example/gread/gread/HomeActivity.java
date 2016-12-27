@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import static com.example.gread.gread.MainActivity.account;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -18,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private CharSequence title;
+    private Toolbar toolbar;
 
     private ActionBarDrawerToggle drawerToggle;
 
@@ -28,6 +32,9 @@ public class HomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_home);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         title = getTitle();
         readerList = getResources().getStringArray(R.array.page_list);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -37,8 +44,8 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-       // getActionBar().setDisplayHomeAsUpEnabled(true);
-        //getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         drawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -47,17 +54,17 @@ public class HomeActivity extends AppCompatActivity {
                 R.string.drawer_open,
                 R.string.drawer_close
         ){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                //getSupportActionBar().setTitle(title);
+                invalidateOptionsMenu();
+            }
 
-//            public void onDrawerClosed(View drawerView) {
-//                getActionBar().setTitle(title);
-//                invalidateOptionsMenu();
-//            }
-//
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                getActionBar().setTitle(title);
-//                invalidateOptionsMenu();
-//            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(title);
+                invalidateOptionsMenu();
+            }
         };
 
         drawerLayout.setDrawerListener(drawerToggle);
@@ -77,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void selectItem(int position){
-        Fragment commasFragment = CommasFragment.newInstance("Hello", "World!");
+        Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -85,13 +92,13 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
 
         drawerList.setItemChecked(position, true);
-        //setTitle(readerList[position]);
+        setTitle(readerList[position]);
         drawerLayout.closeDrawer(drawerList);
     }
 
     @Override
     public void setTitle(CharSequence title) {
-        getActionBar().setTitle(title);
+        getSupportActionBar().setTitle(title);
     }
 }
 
