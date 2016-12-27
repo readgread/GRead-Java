@@ -67,8 +67,8 @@ public class CommasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_commas, container, false);
-        ((TextView)rootView.findViewById(R.id.name)).setText(ARG_PARAM1);
-        ((TextView)rootView.findViewById(R.id.email)).setText(ARG_PARAM2);
+        ((TextView)rootView.findViewById(R.id.name)).setText(mParam1);
+        ((TextView)rootView.findViewById(R.id.email)).setText(mParam2);
         return rootView;
     }
 
