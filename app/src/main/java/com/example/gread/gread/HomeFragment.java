@@ -4,28 +4,19 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.gread.gread.HomeActivity.appContext;
-
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CommasFragment.OnFragmentInteractionListener} interface
+ * {@link HomeFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CommasFragment#newInstance} factory method to
+ * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CommasFragment extends Fragment {
+public class HomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,13 +25,10 @@ public class CommasFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    RecyclerView commas_recView;
-    CardView commasCardView;
-    RecyclerView.LayoutManager commas_rec_layout_mgr;
 
     private OnFragmentInteractionListener mListener;
 
-    public CommasFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -50,16 +38,15 @@ public class CommasFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CommasFragment.
+     * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static Fragment newInstance(String param1, String param2) {
-        Fragment fragment = new CommasFragment();
+        Fragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -75,27 +62,8 @@ public class CommasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_commas, container, false);
-        commas_recView = ((RecyclerView)rootView.findViewById(R.id.commas_recycler));
-        commas_rec_layout_mgr = new LinearLayoutManager(appContext);
-        commas_recView.setLayoutManager(commas_rec_layout_mgr);
-        CommasAdapter adapter = new CommasAdapter(appContext, getImages());
-        commas_recView.setAdapter(adapter);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         return rootView;
-    }
-
-    public List<ImageParser> getImages(){
-        int[] images = {R.drawable.comma, R.drawable.scrawled, R.drawable.scribbled};
-
-        List<ImageParser> allImages=new ArrayList();
-
-        for(int i=0;i<images.length;i++){
-            ImageParser imageParser =new ImageParser();
-            imageParser.image=images[i];
-            allImages.add(imageParser);
-        }
-        return allImages;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

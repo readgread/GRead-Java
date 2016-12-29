@@ -2,6 +2,7 @@ package com.example.gread.gread;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -22,6 +23,8 @@ public class HomeActivity extends AppCompatActivity {
     private ListView drawerList;
     private CharSequence title;
     private Toolbar toolbar;
+    public static Context appContext;
+
 
     private ActionBarDrawerToggle drawerToggle;
 
@@ -31,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
-
+        appContext=getApplicationContext();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -84,13 +87,24 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void selectItem(int position){
-        Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
+        if (position==0)
+        {
+            Fragment homeFragment = HomeFragment.newInstance(account.getDisplayName(), account.getEmail());
 
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, commasFragment)
-                .commit();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, homeFragment)
+                    .commit();
+        }
 
+        if(position==1) {
+            Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, commasFragment)
+                    .commit();
+        }
         drawerList.setItemChecked(position, true);
         setTitle(readerList[position]);
         drawerLayout.closeDrawer(drawerList);
