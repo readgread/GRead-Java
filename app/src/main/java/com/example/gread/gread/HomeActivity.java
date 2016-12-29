@@ -10,19 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-<<<<<<< HEAD
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-=======
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import static com.example.gread.gread.MainActivity.account;
 
 public class HomeActivity extends AppCompatActivity {
->>>>>>> nav-drawer
+
 
 
     private String[] readerList;
@@ -122,23 +116,3 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 }
-
-
-
-
-<<<<<<< HEAD
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_page, container, false);
-            int i = getArguments().getInt(ARG_PAGE_NUMBER);
-            String page = getResources().getStringArray(R.array.page_list)[i];
-            ((TextView)rootView.findViewById(R.id.name)).setText("Hello World!");
-            ((TextView)rootView.findViewById(R.id.email)).setText("How art thou?");
-            getActivity().setTitle(page);
-            return rootView;
-        }
-    }
-=======
->>>>>>> nav-drawer
-
