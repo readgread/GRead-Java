@@ -1,6 +1,7 @@
 package com.example.gread.gread;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,9 @@ public class CommasAdapter extends RecyclerView.Adapter<CommasHolder> {
     @Override
     public void onBindViewHolder(CommasHolder holder, int position) {
         ImageParser imageParser = images.get(position);
-        holder.commasImage.setImageResource(imageParser.image);
+        System.out.println(position);
+        Uri imageUri = Uri.parse(imageParser.imageURL);
+        holder.commasImage.setImageURI(imageUri);
     }
 
     @Override
@@ -49,6 +52,6 @@ class CommasHolder extends RecyclerView.ViewHolder{
 
     public CommasHolder(View cardView){
         super(cardView);
-        commasImage = (ImageView)cardView.findViewById(R.id.cardview_image);
+        commasImage = (ImageView) cardView.findViewById(R.id.cardview_image);
     }
 }

@@ -115,4 +115,14 @@ public class HomeActivity extends AppCompatActivity {
     public void setTitle(CharSequence title) {
         getSupportActionBar().setTitle(title);
     }
+
+    public void onClickCommasCard(View v) {
+        Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, commasFragment)
+                .commit();
+    }
+
 }

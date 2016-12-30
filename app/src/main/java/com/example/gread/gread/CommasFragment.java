@@ -3,6 +3,7 @@ package com.example.gread.gread;
 import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.gread.gread.CommasFragment.allImages;
 import static com.example.gread.gread.HomeActivity.appContext;
 
 
@@ -36,6 +48,7 @@ public class CommasFragment extends Fragment {
     private String mParam2;
     RecyclerView commas_recView;
     CardView commasCardView;
+    public static List<ImageParser> allImages;
     RecyclerView.LayoutManager commas_rec_layout_mgr;
 
     private OnFragmentInteractionListener mListener;
@@ -86,15 +99,8 @@ public class CommasFragment extends Fragment {
     }
 
     public List<ImageParser> getImages(){
-        int[] images = {R.drawable.comma, R.drawable.scrawled, R.drawable.scribbled};
-
-        List<ImageParser> allImages=new ArrayList();
-
-        for(int i=0;i<images.length;i++){
-            ImageParser imageParser =new ImageParser();
-            imageParser.image=images[i];
-            allImages.add(imageParser);
-        }
+        allImages=new ArrayList();
+        new JsonTask().execute("http://104.155.238.59/commas.json");
         return allImages;
     }
 
@@ -135,5 +141,64 @@ public class CommasFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+}
+class JsonTask extends AsyncTask<String, String, JSONArray>{
+
+    @Override
+    protected JSONArray doInBackground(String... params) {
+        HttpURLConnection connection = null;
+        BufferedReader reader=null;
+        try {
+            URL url = new URL(params[0]);
+            connection = (HttpURLConnection)url.openConnection();
+            connection.connect();
+
+            InputStream inputStream = connection.getInputStream();
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer buffer = new StringBuffer();
+            String line = "";
+
+            while ((line=reader.readLine()) != null){
+                buffer.append(line+"\n");
+            }
+            return new JSONArray(buffer.toString());
+        }
+        catch (MalformedURLException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(JSONArray result) {
+        super.onPostExecute(result);
+        try {
+            for(int i=0;i<5;i++){
+                ImageParser imageParser =new ImageParser();
+                imageParser.imageURL="http://104.155.238.59/comma50/"+result.getString(i);
+                //System.out.println(imageParser.imageURL);
+                allImages.add(imageParser);
+            }
+            //System.out.println(allImages.get(0).imageURL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
