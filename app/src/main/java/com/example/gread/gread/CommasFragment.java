@@ -3,7 +3,6 @@ package com.example.gread.gread;
 import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,8 +23,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import static com.example.gread.gread.CommasFragment.allImages;
 import static com.example.gread.gread.HomeActivity.appContext;
 
 
@@ -48,10 +47,11 @@ public class CommasFragment extends Fragment {
     private String mParam2;
     RecyclerView commas_recView;
     CardView commasCardView;
-    public static List<ImageParser> allImages;
+    public static JSONArray commasResultSet;
     RecyclerView.LayoutManager commas_rec_layout_mgr;
 
     private OnFragmentInteractionListener mListener;
+
 
     public CommasFragment() {
         // Required empty public constructor
@@ -93,14 +93,67 @@ public class CommasFragment extends Fragment {
         commas_recView = ((RecyclerView)rootView.findViewById(R.id.commas_recycler));
         commas_rec_layout_mgr = new LinearLayoutManager(appContext);
         commas_recView.setLayoutManager(commas_rec_layout_mgr);
-        CommasAdapter adapter = new CommasAdapter(appContext, getImages());
+        CommasAdapter adapter = null;
+        try {
+            adapter = new CommasAdapter(appContext, getImages());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         commas_recView.setAdapter(adapter);
         return rootView;
     }
 
-    public List<ImageParser> getImages(){
-        allImages=new ArrayList();
-        new JsonTask().execute("http://104.155.238.59/commas.json");
+    public List<ImageParser> getImages() throws ExecutionException, InterruptedException {
+        List<ImageParser> allImages=new ArrayList();
+        HttpURLConnection connection = null;
+        BufferedReader reader=null;
+        try {
+            URL url = new URL("http://104.155.238.59/commas.json");
+            connection = (HttpURLConnection)url.openConnection();
+            connection.connect();
+
+            InputStream inputStream = connection.getInputStream();
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer buffer = new StringBuffer();
+            String line = "";
+
+            while ((line=reader.readLine()) != null){
+                buffer.append(line+"\n");
+            }
+            commasResultSet = new JSONArray(buffer.toString());
+        }
+        catch (MalformedURLException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            for(int i=0;i<5;i++){
+                ImageParser imageParser =new ImageParser();
+                imageParser.imageURL="http://104.155.238.59/comma50/"+commasResultSet.getString(i);
+                //System.out.println(imageParser.imageURL);
+                allImages.add(imageParser);
+            }
+            //System.out.println(allImages.get(0).imageURL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return allImages;
     }
 
@@ -143,62 +196,4 @@ public class CommasFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
-class JsonTask extends AsyncTask<String, String, JSONArray>{
 
-    @Override
-    protected JSONArray doInBackground(String... params) {
-        HttpURLConnection connection = null;
-        BufferedReader reader=null;
-        try {
-            URL url = new URL(params[0]);
-            connection = (HttpURLConnection)url.openConnection();
-            connection.connect();
-
-            InputStream inputStream = connection.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuffer buffer = new StringBuffer();
-            String line = "";
-
-            while ((line=reader.readLine()) != null){
-                buffer.append(line+"\n");
-            }
-            return new JSONArray(buffer.toString());
-        }
-        catch (MalformedURLException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return null;
-    }
-
-    @Override
-    protected void onPostExecute(JSONArray result) {
-        super.onPostExecute(result);
-        try {
-            for(int i=0;i<5;i++){
-                ImageParser imageParser =new ImageParser();
-                imageParser.imageURL="http://104.155.238.59/comma50/"+result.getString(i);
-                //System.out.println(imageParser.imageURL);
-                allImages.add(imageParser);
-            }
-            //System.out.println(allImages.get(0).imageURL);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-}

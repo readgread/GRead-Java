@@ -6,7 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,10 +49,10 @@ public class CommasAdapter extends RecyclerView.Adapter<CommasHolder> {
 
 
 class CommasHolder extends RecyclerView.ViewHolder{
-    ImageView commasImage;
+    SimpleDraweeView commasImage;
 
     public CommasHolder(View cardView){
         super(cardView);
-        commasImage = (ImageView) cardView.findViewById(R.id.cardview_image);
+        commasImage = (SimpleDraweeView) cardView.findViewById(R.id.cardview_image);
     }
 }
