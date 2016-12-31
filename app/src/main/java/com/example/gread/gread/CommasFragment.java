@@ -144,7 +144,7 @@ public class CommasFragment extends Fragment {
 
         }
         try {
-            for(int i=0;i<5;i++){
+            for(int i=0;i<commasResultSet.length();i++){
                 ImageParser imageParser =new ImageParser();
                 imageParser.imageURL="http://104.155.238.59/comma50/"+commasResultSet.getString(i);
                 //System.out.println(imageParser.imageURL);
