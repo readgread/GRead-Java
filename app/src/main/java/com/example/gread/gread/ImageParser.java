@@ -6,5 +6,5 @@ package com.example.gread.gread;
 
 public class ImageParser {
 
-    int image;
+    String imageURL;
 }

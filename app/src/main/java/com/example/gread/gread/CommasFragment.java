@@ -11,8 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.gread.gread.HomeActivity.appContext;
 
@@ -36,9 +47,11 @@ public class CommasFragment extends Fragment {
     private String mParam2;
     RecyclerView commas_recView;
     CardView commasCardView;
+    public static JSONArray commasResultSet;
     RecyclerView.LayoutManager commas_rec_layout_mgr;
 
     private OnFragmentInteractionListener mListener;
+
 
     public CommasFragment() {
         // Required empty public constructor
@@ -80,20 +93,66 @@ public class CommasFragment extends Fragment {
         commas_recView = ((RecyclerView)rootView.findViewById(R.id.commas_recycler));
         commas_rec_layout_mgr = new LinearLayoutManager(appContext);
         commas_recView.setLayoutManager(commas_rec_layout_mgr);
-        CommasAdapter adapter = new CommasAdapter(appContext, getImages());
+        CommasAdapter adapter = null;
+        try {
+            adapter = new CommasAdapter(appContext, getImages());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         commas_recView.setAdapter(adapter);
         return rootView;
     }
 
-    public List<ImageParser> getImages(){
-        int[] images = {R.drawable.comma, R.drawable.scrawled, R.drawable.scribbled};
-
+    public List<ImageParser> getImages() throws ExecutionException, InterruptedException {
         List<ImageParser> allImages=new ArrayList();
+        HttpURLConnection connection = null;
+        BufferedReader reader=null;
+        try {
+            URL url = new URL("http://104.155.238.59/commas.json");
+            connection = (HttpURLConnection)url.openConnection();
+            connection.connect();
 
-        for(int i=0;i<images.length;i++){
-            ImageParser imageParser =new ImageParser();
-            imageParser.image=images[i];
-            allImages.add(imageParser);
+            InputStream inputStream = connection.getInputStream();
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer buffer = new StringBuffer();
+            String line = "";
+
+            while ((line=reader.readLine()) != null){
+                buffer.append(line+"\n");
+            }
+            commasResultSet = new JSONArray(buffer.toString());
+        }
+        catch (MalformedURLException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            for(int i=0;i<commasResultSet.length();i++){
+                ImageParser imageParser =new ImageParser();
+                imageParser.imageURL="http://104.155.238.59/comma50/"+commasResultSet.getString(i);
+                //System.out.println(imageParser.imageURL);
+                allImages.add(imageParser);
+            }
+            //System.out.println(allImages.get(0).imageURL);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         return allImages;
     }
@@ -137,3 +196,4 @@ public class CommasFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
+

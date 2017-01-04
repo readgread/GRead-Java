@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,8 +11,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/cardview_commas"
         android:layout_marginTop="16dp"
+        android:onClick="onClickCommasCard"
         card_view:cardElevation="10dp"
-        card_view:cardBackgroundColor="#ffffff">
+        card_view:cardBackgroundColor="#ffffff"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
