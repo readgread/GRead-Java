@@ -83,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if(savedInstanceState==null){
 
+
         }
 
     }
@@ -113,6 +114,22 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame, commasFragment)
+                            .commit();
+                    break;
+                case R.id.readers_drawer_item:
+                    Fragment readersFragment = ReaderFragment.newInstance(account.getDisplayName(), account.getEmail());
+
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, readersFragment)
+                            .commit();
+                    break;
+                case R.id.scrawled_drawer_item:
+                    Fragment scrawledFragment = ScrawledFragment.newInstance(account.getDisplayName(), account.getEmail());
+
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, scrawledFragment)
                             .commit();
                     break;
             }
@@ -162,6 +179,24 @@ public class HomeActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, commasFragment)
+                .commit();
+    }
+
+    public void onClickReadersCard(View v){
+        Fragment readersFragment = ReaderFragment.newInstance(account.getDisplayName(), account.getEmail());
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, readersFragment)
+                .commit();
+    }
+
+    public void onClickScrawledCard(View v){
+        Fragment scrawledFragment = ScrawledFragment.newInstance(account.getDisplayName(), account.getEmail());
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, scrawledFragment)
                 .commit();
     }
 
