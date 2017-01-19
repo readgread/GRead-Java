@@ -42,7 +42,9 @@
         android:id="@+id/cardview_scrawled"
         android:layout_marginTop="16dp"
         card_view:cardElevation="10dp"
-        card_view:cardBackgroundColor="#ffffff">
+        card_view:cardBackgroundColor="#ffffff"
+        android:clickable="true"
+        android:onClick="onClickScrawledCard">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,7 +73,9 @@
         android:id="@+id/cardview_readers"
         android:layout_marginTop="16dp"
         card_view:cardElevation="10dp"
-        card_view:cardBackgroundColor="#ffffff">
+        card_view:cardBackgroundColor="#ffffff"
+        android:clickable="true"
+        android:onClick="onClickReadersCard">
 
         <LinearLayout
             android:layout_width="match_parent"
