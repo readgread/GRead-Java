@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(title);
+                ab.setTitle(title);
                 invalidateOptionsMenu();
             }
         };
@@ -82,8 +82,8 @@ public class HomeActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
         if(savedInstanceState==null){
-
-
+            Navigation navigation = new Navigation();
+            //navigation.onNavigationItemSelected();
         }
 
     }
