@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:backgroundTint="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="192dp"
     android:background="?attr/colorAccent"
@@ -14,6 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/user_display_name"
         android:textSize="30sp"
+        android:background="@color/colorPrimaryDark"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </LinearLayout>
