@@ -14,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import static com.example.gread.gread.MainActivity.account;
 
@@ -57,7 +60,11 @@ public class HomeActivity extends AppCompatActivity {
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setHomeButtonEnabled(true);
-
+        View nav_header = navDrawer.getHeaderView(0);
+        TextView user_name = (TextView)nav_header.findViewById(R.id.user_display_name);
+        user_name.setText("Welcome "+account.getGivenName());
+        SimpleDraweeView user_image = (SimpleDraweeView) nav_header.findViewById(R.id.user_pic);
+        user_image.setImageURI(account.getPhotoUrl());
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -73,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(title);
+                ab.setTitle(title);
                 invalidateOptionsMenu();
             }
         };
@@ -82,8 +89,8 @@ public class HomeActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
         if(savedInstanceState==null){
-
-
+            Navigation navigation = new Navigation();
+            navigation.onNavigationItemSelected(navDrawer.getMenu().getItem(0));
         }
 
     }
@@ -133,6 +140,10 @@ public class HomeActivity extends AppCompatActivity {
                             .replace(R.id.content_frame, scrawledFragment)
                             .commit();
                     break;
+                case R.id.sign_out:
+                    //sign_out();
+                    break;
+
             }
             return true;
         }
@@ -201,4 +212,9 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        moveTaskToBack(true);
+    }
 }
