@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "748923838250",
+    "project_id": "firebase-gread"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748923838250:android:8f4d77e2fb903ad3",
+        "android_client_info": {
+          "package_name": "com.example.gread.gread"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748923838250-4df62719oqv5ma05jsqp3qdu13sumv61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfhQcNWiLVgqduR0Dk1Ew4UALb8d6FA8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

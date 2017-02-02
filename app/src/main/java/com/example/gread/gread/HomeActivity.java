@@ -140,9 +140,6 @@ public class HomeActivity extends AppCompatActivity {
                             .replace(R.id.content_frame, scrawledFragment)
                             .commit();
                     break;
-                case R.id.sign_out:
-                    //sign_out();
-                    break;
 
             }
             return true;
