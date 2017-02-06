@@ -13,6 +13,8 @@
 
     <string name="action_example">Example action</string>
 
+    <string name="server_client_id">748923838250-pvj3cskbmdql3hildtpje56u7fqtr3la.apps.googleusercontent.com</string>
+
     <string name="action_settings">Settings</string>
     <string-array name="page_list">
         <item>Home</item>

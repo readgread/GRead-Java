@@ -12,6 +12,15 @@
         }
       },
       "oauth_client": [
+          
+          {
+            "client_id": "748923838250-pvj3cskbmdql3hildtpje56u7fqtr3la.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+            "package_name": "com.example.gread.gread",
+            "certificate_hash": "ACCE5F89B3457B7136C4A5DB4210C466646E171E"
+            }
+        },
         {
           "client_id": "748923838250-4df62719oqv5ma05jsqp3qdu13sumv61.apps.googleusercontent.com",
           "client_type": 3
