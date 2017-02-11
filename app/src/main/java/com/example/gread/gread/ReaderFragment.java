@@ -107,7 +107,7 @@ public class ReaderFragment extends Fragment {
         HttpURLConnection connection = null;
         BufferedReader reader=null;
         try {
-            URL url = new URL("http://104.155.238.59/reader.json");
+            URL url = new URL("http://139.59.19.54/reader.json");
             connection = (HttpURLConnection)url.openConnection();
             connection.connect();
 
@@ -143,7 +143,7 @@ public class ReaderFragment extends Fragment {
         try {
             for(int i=0;i<readerResultSet.length();i++){
                 ImageParser imageParser =new ImageParser();
-                imageParser.imageURL="http://104.155.238.59/reader50/"+readerResultSet.getString(i);
+                imageParser.imageURL="http://139.59.19.54/reader50/"+readerResultSet.getString(i);
                 //System.out.println(imageParser.imageURL);
                 allImages.add(imageParser);
             }

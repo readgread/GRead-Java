@@ -110,7 +110,7 @@ public class CommasFragment extends Fragment {
         HttpURLConnection connection = null;
         BufferedReader reader=null;
         try {
-            URL url = new URL("http://104.155.238.59/commas.json");
+            URL url = new URL("http://139.59.19.54/commas.json");
             connection = (HttpURLConnection)url.openConnection();
             connection.connect();
 
@@ -146,7 +146,7 @@ public class CommasFragment extends Fragment {
         try {
             for(int i=0;i<commasResultSet.length();i++){
                 ImageParser imageParser =new ImageParser();
-                imageParser.imageURL="http://104.155.238.59/comma50/"+commasResultSet.getString(i);
+                imageParser.imageURL="http://139.59.19.54/comma50/"+commasResultSet.getString(i);
                 //System.out.println(imageParser.imageURL);
                 allImages.add(imageParser);
             }

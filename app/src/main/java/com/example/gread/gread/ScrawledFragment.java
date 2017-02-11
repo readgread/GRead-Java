@@ -107,7 +107,7 @@ public class ScrawledFragment extends Fragment {
         HttpURLConnection connection = null;
         BufferedReader reader=null;
         try {
-            URL url = new URL("http://104.155.238.59/scrawled.json");
+            URL url = new URL("http://139.59.19.54/scrawled.json");
             connection = (HttpURLConnection)url.openConnection();
             connection.connect();
 
@@ -143,7 +143,7 @@ public class ScrawledFragment extends Fragment {
         try {
             for(int i=0;i<scrawledResultSet.length();i++){
                 ImageParser imageParser =new ImageParser();
-                imageParser.imageURL="http://104.155.238.59/scrawled50/"+scrawledResultSet.getString(i);
+                imageParser.imageURL="http://139.59.19.54/scrawled50/"+scrawledResultSet.getString(i);
                 //System.out.println(imageParser.imageURL);
                 allImages.add(imageParser);
             }
