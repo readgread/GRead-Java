@@ -2,17 +2,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="192dp"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:gravity="bottom">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/user_pic"
         fresco:roundAsCircle="true"
         fresco:actualImageScaleType="fitCenter"

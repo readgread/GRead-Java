@@ -3,10 +3,12 @@ package com.example.gread.gread;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +20,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import static com.example.gread.gread.MainActivity.account;
+import static com.example.gread.gread.MainActivity.USER_PREFS_NAME;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -29,7 +31,8 @@ public class HomeActivity extends AppCompatActivity {
     private CharSequence title;
     private Toolbar toolbar;
     public static Context appContext;
-
+    public boolean isHomeFragShown;
+    public String storedDisplayName,storedPhotoURL,storedEmail;
 
     private ActionBarDrawerToggle drawerToggle;
 
@@ -53,6 +56,12 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navDrawer = (NavigationView) findViewById(R.id.left_drawer);
         navDrawer.setNavigationItemSelectedListener(new Navigation());
+        navDrawer.setItemIconTintList(null);
+
+        SharedPreferences preferences = getSharedPreferences(USER_PREFS_NAME, MODE_PRIVATE);
+        storedDisplayName = preferences.getString("DisplayName", null);
+        storedPhotoURL = preferences.getString("PhotoURL", null);
+        storedEmail = preferences.getString("Email", null);
 
         //drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, readerList));
 
@@ -62,9 +71,9 @@ public class HomeActivity extends AppCompatActivity {
         //getSupportActionBar().setHomeButtonEnabled(true);
         View nav_header = navDrawer.getHeaderView(0);
         TextView user_name = (TextView)nav_header.findViewById(R.id.user_display_name);
-        user_name.setText("Welcome "+account.getGivenName());
+        user_name.setText("Welcome "+ storedDisplayName);
         SimpleDraweeView user_image = (SimpleDraweeView) nav_header.findViewById(R.id.user_pic);
-        user_image.setImageURI(account.getPhotoUrl());
+        user_image.setImageURI(storedPhotoURL);
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -108,37 +117,41 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()){
 
                 case R.id.home:
-                    Fragment homeFragment = HomeFragment.newInstance(account.getDisplayName(), account.getEmail());
+                    Fragment homeFragment = HomeFragment.newInstance(storedDisplayName, storedEmail);
 
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame, homeFragment)
                             .commit();
+                    isHomeFragShown = true;
                     break;
 
                 case R.id.commas_drawer_item:
-                    Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
+                    Fragment commasFragment = CommasFragment.newInstance(storedDisplayName, storedEmail);
 
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame, commasFragment)
                             .commit();
+                    isHomeFragShown = false;
                     break;
                 case R.id.readers_drawer_item:
-                    Fragment readersFragment = ReaderFragment.newInstance(account.getDisplayName(), account.getEmail());
+                    Fragment readersFragment = ReaderFragment.newInstance(storedDisplayName, storedEmail);
 
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame, readersFragment)
                             .commit();
+                    isHomeFragShown = false;
                     break;
                 case R.id.scrawled_drawer_item:
-                    Fragment scrawledFragment = ScrawledFragment.newInstance(account.getDisplayName(), account.getEmail());
+                    Fragment scrawledFragment = ScrawledFragment.newInstance(storedDisplayName, storedEmail);
 
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame, scrawledFragment)
                             .commit();
+                    isHomeFragShown = false;
                     break;
 
             }
@@ -153,29 +166,6 @@ public class HomeActivity extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-//    private void selectItem(int position){
-//        if (position==0)
-//        {
-//            Fragment homeFragment = HomeFragment.newInstance(account.getDisplayName(), account.getEmail());
-//
-//            FragmentManager fragmentManager = getFragmentManager();
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.content_frame, homeFragment)
-//                    .commit();
-//        }
-//
-//        if(position==1) {
-//            Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
-//
-//            FragmentManager fragmentManager = getFragmentManager();
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.content_frame, commasFragment)
-//                    .commit();
-//        }
-//        drawerList.setItemChecked(position, true);
-//        setTitle(readerList[position]);
-//        drawerLayout.closeDrawer(drawerList);
-//    }
 
     @Override
     public void setTitle(CharSequence title) {
@@ -183,35 +173,52 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onClickCommasCard(View v) {
-        Fragment commasFragment = CommasFragment.newInstance(account.getDisplayName(), account.getEmail());
+        Fragment commasFragment = CommasFragment.newInstance(storedDisplayName, storedEmail);
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, commasFragment)
                 .commit();
+        isHomeFragShown = false;
     }
 
     public void onClickReadersCard(View v){
-        Fragment readersFragment = ReaderFragment.newInstance(account.getDisplayName(), account.getEmail());
+        Fragment readersFragment = ReaderFragment.newInstance(storedDisplayName, storedEmail);
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, readersFragment)
                 .commit();
+        isHomeFragShown = false;
     }
 
     public void onClickScrawledCard(View v){
-        Fragment scrawledFragment = ScrawledFragment.newInstance(account.getDisplayName(), account.getEmail());
+        Fragment scrawledFragment = ScrawledFragment.newInstance(storedDisplayName, storedEmail);
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, scrawledFragment)
                 .commit();
+        isHomeFragShown = false;
     }
 
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        moveTaskToBack(true);
+
+        if(this.drawerLayout.isDrawerOpen(GravityCompat.START))
+            this.drawerLayout.closeDrawer(GravityCompat.START);
+        else{
+            if(isHomeFragShown)
+                moveTaskToBack(true);
+            else {
+                Navigation navigation = new Navigation();
+                navigation.onNavigationItemSelected(navDrawer.getMenu().getItem(0));
+            }
+
+        }
+
+
+
     }
 }
