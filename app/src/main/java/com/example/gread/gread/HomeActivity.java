@@ -59,9 +59,9 @@ public class HomeActivity extends AppCompatActivity {
         navDrawer.setItemIconTintList(null);
 
         SharedPreferences preferences = getSharedPreferences(USER_PREFS_NAME, MODE_PRIVATE);
-        storedDisplayName = preferences.getString("DisplayName", null);
-        storedPhotoURL = preferences.getString("PhotoURL", null);
-        storedEmail = preferences.getString("Email", null);
+        storedDisplayName = preferences.getString("Ishan", null);
+        //storedPhotoURL = preferences.getString("PhotoURL", null);
+        storedEmail = preferences.getString("mrishan1993@gmail.com", null);
 
         //drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, readerList));
 
@@ -72,8 +72,8 @@ public class HomeActivity extends AppCompatActivity {
         View nav_header = navDrawer.getHeaderView(0);
         TextView user_name = (TextView)nav_header.findViewById(R.id.user_display_name);
         user_name.setText("Welcome "+ storedDisplayName);
-        SimpleDraweeView user_image = (SimpleDraweeView) nav_header.findViewById(R.id.user_pic);
-        user_image.setImageURI(storedPhotoURL);
+        //SimpleDraweeView user_image = (SimpleDraweeView) nav_header.findViewById(R.id.user_pic);
+        //user_image.setImageURI(storedPhotoURL);
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
