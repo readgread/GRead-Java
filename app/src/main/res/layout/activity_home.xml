@@ -25,7 +25,7 @@
     </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/left_drawer"
-        android:layout_width="240dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:elevation="24sp"
@@ -37,6 +37,5 @@
         app:menu="@menu/drawer_menu"
         app:itemTextColor="@color/colorPrimary"
         app:elevation="26dp"
-        app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/colorPrimaryDark" />
 </android.support.v4.widget.DrawerLayout>
