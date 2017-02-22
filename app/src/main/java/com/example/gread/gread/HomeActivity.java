@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         //getSupportActionBar().setHomeButtonEnabled(true);
         View nav_header = navDrawer.getHeaderView(0);
         TextView user_name = (TextView)nav_header.findViewById(R.id.user_display_name);
-        user_name.setText("Welcome "+ storedDisplayName);
+        user_name.setText(storedDisplayName);
         SimpleDraweeView user_image = (SimpleDraweeView) nav_header.findViewById(R.id.user_pic);
         user_image.setImageURI(storedPhotoURL);
         drawerToggle = new ActionBarDrawerToggle(

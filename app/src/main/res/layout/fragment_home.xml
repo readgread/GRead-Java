@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cardview_commas"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="onClickCommasCard"
-        card_view:cardElevation="10dp"
+        card_view:cardElevation="5dp"
         card_view:cardBackgroundColor="#ffffff"
         android:clickable="true">
 
@@ -28,7 +28,7 @@
                 android:text="Commas and Halfstrokes"
                 android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cardview_scrawled"
-        android:layout_marginTop="16dp"
-        card_view:cardElevation="10dp"
+        android:layout_marginTop="8dp"
+        card_view:cardElevation="5dp"
         card_view:cardBackgroundColor="#ffffff"
         android:clickable="true"
         android:onClick="onClickScrawledCard">
@@ -58,7 +58,7 @@
                 android:text="Scrawled Stories"
                 android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,8 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cardview_readers"
-        android:layout_marginTop="16dp"
-        card_view:cardElevation="10dp"
+        android:layout_marginTop="8dp"
+        card_view:cardElevation="5dp"
         card_view:cardBackgroundColor="#ffffff"
         android:clickable="true"
         android:onClick="onClickReadersCard">
@@ -89,7 +89,7 @@
                 android:text="Reader's Guild"
                 android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
