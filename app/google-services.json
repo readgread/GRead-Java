@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "748923838250-g9ors37g4bjuof0roo1bi3mkse07uufh.apps.googleusercontent.com",
+          "client_id": "748923838250-err6mt017hb7d0n5kbnvqu03oqemif2v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.gread.gread",
-            "certificate_hash": "a143962ac510dba73d470d3cc31640d725bed8b5"
-          }
-        },
-        {
-          "client_id": "748923838250-pvj3cskbmdql3hildtpje56u7fqtr3la.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.gread.gread",
-            "certificate_hash": "acce5f89b3457b7136c4a5db4210c466646e171e"
+            "certificate_hash": "72edb524a891ecab79247331096c023a71e58376"
           }
         },
         {
@@ -37,6 +29,14 @@
         {
           "client_id": "748923838250-4df62719oqv5ma05jsqp3qdu13sumv61.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "748923838250-pvj3cskbmdql3hildtpje56u7fqtr3la.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gread.gread",
+            "certificate_hash": "acce5f89b3457b7136c4a5db4210c466646e171e"
+          }
         }
       ],
       "api_key": [
