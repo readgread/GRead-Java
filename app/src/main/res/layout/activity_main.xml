@@ -12,9 +12,6 @@
     android:background="@color/colorBackground"
     tools:context="com.example.gread.gread.MainActivity">
 
-
-
-
     <TextView
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
@@ -45,14 +42,15 @@
         android:shadowDy="1"
         android:shadowDx="1"
         android:shadowColor="@color/colorPrimaryDark" />
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/logo"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@+id/caption_text"
-    android:layout_marginTop="-10dp"
-    android:id="@+id/logoImage"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/caption_text"
+        android:layout_marginTop="-10dp"
+        android:id="@+id/logoImage"/>
+
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
@@ -62,6 +60,15 @@
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sign_in_fb"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sign_in_button"
+        android:elevation="20sp"/>
 
 
 </RelativeLayout>

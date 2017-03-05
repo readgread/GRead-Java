@@ -3,7 +3,6 @@ package com.example.gread.gread;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,8 +18,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import static com.example.gread.gread.MainActivity.USER_PREFS_NAME;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -58,10 +55,10 @@ public class HomeActivity extends AppCompatActivity {
         navDrawer.setNavigationItemSelectedListener(new Navigation());
         navDrawer.setItemIconTintList(null);
 
-        SharedPreferences preferences = getSharedPreferences(USER_PREFS_NAME, MODE_PRIVATE);
-        storedDisplayName = preferences.getString("DisplayName", null);
-        storedPhotoURL = preferences.getString("PhotoURL", null);
-        storedEmail = preferences.getString("Email", null);
+        //SharedPreferences preferences = getSharedPreferences(USER_PREFS_NAME, MODE_PRIVATE);
+        storedDisplayName = getIntent().getStringExtra("DisplayName");
+        storedPhotoURL = getIntent().getStringExtra("PhotoURL");
+        storedEmail = getIntent().getStringExtra("Email");
 
         //drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, readerList));
 
