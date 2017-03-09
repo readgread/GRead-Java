@@ -1,8 +1,7 @@
-package com.example.gread.gread;
+package com.gread;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;

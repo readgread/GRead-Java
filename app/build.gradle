@@ -21,7 +21,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion '25'
     defaultConfig {
-        applicationId "com.example.gread.gread"
+        applicationId "com.gread"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1

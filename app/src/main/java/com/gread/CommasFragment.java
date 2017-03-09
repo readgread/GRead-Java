@@ -1,9 +1,9 @@
-package com.example.gread.gread;
+package com.gread;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,18 +24,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.gread.gread.HomeActivity.appContext;
+import static com.gread.HomeActivity.appContext;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ScrawledFragment.OnFragmentInteractionListener} interface
+ * {@link CommasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ScrawledFragment#newInstance} factory method to
+ * Use the {@link CommasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScrawledFragment extends Fragment {
+public class CommasFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,14 +44,15 @@ public class ScrawledFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    RecyclerView commas_recView;
+    CardView commasCardView;
+    public static JSONArray commasResultSet;
+    RecyclerView.LayoutManager commas_rec_layout_mgr;
 
-    RecyclerView scrawled_recView;
-    public static JSONArray scrawledResultSet;
-    RecyclerView.LayoutManager scrawled_rev_layout_mgr;
+    //private OnFragmentInteractionListener mListener;
 
-   // private OnFragmentInteractionListener mListener;
 
-    public ScrawledFragment() {
+    public CommasFragment() {
         // Required empty public constructor
     }
 
@@ -61,15 +62,16 @@ public class ScrawledFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ScrawledFragment.
+     * @return A new instance of fragment CommasFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static Fragment newInstance(String param1, String param2) {
-        Fragment fragment = new ScrawledFragment();
+        Fragment fragment = new CommasFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -85,20 +87,20 @@ public class ScrawledFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView =  inflater.inflate(R.layout.fragment_scrawled, container, false);
-        scrawled_recView = ((RecyclerView)rootView.findViewById(R.id.scrawled_recycler));
-        scrawled_rev_layout_mgr = new LinearLayoutManager(appContext);
-        scrawled_recView.setLayoutManager(scrawled_rev_layout_mgr);
-        CommasAdapter adapterReader = null;
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_commas, container, false);
+        commas_recView = ((RecyclerView)rootView.findViewById(R.id.commas_recycler));
+        commas_rec_layout_mgr = new LinearLayoutManager(appContext);
+        commas_recView.setLayoutManager(commas_rec_layout_mgr);
+        CommasAdapter adapter = null;
         try {
-            adapterReader = new CommasAdapter(appContext, getImages());
+            adapter = new CommasAdapter(appContext, getImages());
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        scrawled_recView.setAdapter(adapterReader);
+        commas_recView.setAdapter(adapter);
         return rootView;
     }
 
@@ -107,7 +109,7 @@ public class ScrawledFragment extends Fragment {
         HttpURLConnection connection = null;
         BufferedReader reader=null;
         try {
-            URL url = new URL("http://139.59.19.54/scrawled.json");
+            URL url = new URL("http://139.59.19.54/commas.json");
             connection = (HttpURLConnection)url.openConnection();
             connection.connect();
 
@@ -119,7 +121,7 @@ public class ScrawledFragment extends Fragment {
             while ((line=reader.readLine()) != null){
                 buffer.append(line+"\n");
             }
-            scrawledResultSet = new JSONArray(buffer.toString());
+            commasResultSet = new JSONArray(buffer.toString());
         }
         catch (MalformedURLException e){
             e.printStackTrace();
@@ -141,9 +143,9 @@ public class ScrawledFragment extends Fragment {
 
         }
         try {
-            for(int i=0;i<scrawledResultSet.length();i++){
+            for(int i=0;i<commasResultSet.length();i++){
                 ImageParser imageParser =new ImageParser();
-                imageParser.imageURL="http://139.59.19.54/scrawled50/"+scrawledResultSet.getString(i);
+                imageParser.imageURL="http://139.59.19.54/comma50/"+commasResultSet.getString(i);
                 //System.out.println(imageParser.imageURL);
                 allImages.add(imageParser);
             }
@@ -175,7 +177,7 @@ public class ScrawledFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-  //      mListener = null;
+        //mListener = null;
     }
 
     /**
@@ -193,3 +195,4 @@ public class ScrawledFragment extends Fragment {
 //        void onFragmentInteraction(Uri uri);
 //    }
 }
+

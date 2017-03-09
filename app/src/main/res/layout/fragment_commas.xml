@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/commas_frame"
-    tools:context="com.example.gread.gread.CommasFragment">
+    tools:context="com.gread.CommasFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/commas_recycler"

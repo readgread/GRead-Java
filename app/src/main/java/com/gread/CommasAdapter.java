@@ -1,4 +1,4 @@
-package com.example.gread.gread;
+package com.gread;
 
 import android.content.Context;
 import android.net.Uri;

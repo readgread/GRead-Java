@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/reader_frame"
-    tools:context="com.example.gread.gread.ReaderFragment">
+    tools:context="com.gread.ReaderFragment">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

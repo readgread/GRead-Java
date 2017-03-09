@@ -1,4 +1,4 @@
-package com.example.gread.gread;
+package com.gread;
 
 /**
  * Created by babayega on 29/12/16.

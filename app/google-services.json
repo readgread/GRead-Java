@@ -8,78 +8,34 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:933280130753:android:bf71f6055cb0c792",
+        "mobilesdk_app_id": "1:933280130753:android:e174c3526f045177",
         "android_client_info": {
-          "package_name": "com.example.com"
+          "package_name": "com.gread"
         }
       },
       "oauth_client": [
         {
-          "client_id": "933280130753-6kusq9dpu5f0t631i4j7mfm3edb00e0b.apps.googleusercontent.com",
+          "client_id": "933280130753-al6psd4c2im5s6fhulk9r1gu81jjsb81.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.com",
+            "package_name": "com.gread",
             "certificate_hash": "41e6f3307205e2c2c719eb2ef06c1df5abad7404"
           }
         },
         {
-          "client_id": "933280130753-vogl6staaj9l56vd1rvn149lq6fmr229.apps.googleusercontent.com",
+          "client_id": "933280130753-1aittgetkdb5dbms91rmuvo61j0uhf42.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.com",
+            "package_name": "com.gread",
             "certificate_hash": "acce5f89b3457b7136c4a5db4210c466646e171e"
           }
         },
         {
-          "client_id": "933280130753-0fqn6tlbh7utknuk7j9uppu4bnoth7h6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAX1vskJhCIGzX8R88n2Z20AOsw7O2y4Y0"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "933280130753-0fqn6tlbh7utknuk7j9uppu4bnoth7h6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:933280130753:android:8f4d77e2fb903ad3",
-        "android_client_info": {
-          "package_name": "com.example.gread.gread"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "933280130753-1r5sll60h4ldueal5sut7ujb8ejib21f.apps.googleusercontent.com",
+          "client_id": "933280130753-c7p42vhu928voi06degglf9t6fsrfqtn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.gread.gread",
-            "certificate_hash": "acce5f89b3457b7136c4a5db4210c466646e171e"
-          }
-        },
-        {
-          "client_id": "933280130753-dm9as7ma8m79qmid5lhvi4hv6bfg3tg1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.gread.gread",
-            "certificate_hash": "41e6f3307205e2c2c719eb2ef06c1df5abad7404"
+            "package_name": "com.gread",
+            "certificate_hash": "72edb524a891ecab79247331096c023a71e58376"
           }
         },
         {
