@@ -2,9 +2,14 @@ package com.gread;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -36,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     private ActionBarDrawerToggle drawerToggle;
 
+    private NetworkChangeReceiver receiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,9 @@ public class HomeActivity extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_drawer);
         ab.setDisplayHomeAsUpEnabled(true);
 
-
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        receiver = new NetworkChangeReceiver();
+        registerReceiver(receiver, filter);
 
         title = getTitle();
         //readerList = getResources().getStringArray(R.array.page_list);
@@ -167,6 +176,30 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public class NetworkChangeReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(isNetworkAvailable(context)){
+                Toast.makeText(context, "You are Connected", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(context, "No Network Connection", Toast.LENGTH_SHORT).show();
+
+        }
+
+        private boolean isNetworkAvailable(Context context){
+            ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if(connectivityManager != null){
+                NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+                if(info.getState()== NetworkInfo.State.CONNECTED)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+    }
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -244,8 +277,11 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         }
+    }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 }
