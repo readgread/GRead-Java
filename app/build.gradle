@@ -30,11 +30,8 @@ android {
         signingConfig signingConfigs.gread_release
     }
     buildTypes {
-        debug {
-            debuggable true
-        }
         customDebuggableBuildType {
-            debuggable true
+            debuggable false
             signingConfig signingConfigs.gread_release
             minifyEnabled true
         }
@@ -43,6 +40,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable true
             signingConfig signingConfigs.gread_release
+        }
+        debug {
+            debuggable true
         }
     }
     productFlavors {
