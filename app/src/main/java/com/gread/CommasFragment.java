@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,6 @@ import static com.gread.HomeActivity.appContext;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CommasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link CommasFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -40,15 +40,15 @@ public class CommasFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    public ImageView mImageView;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     RecyclerView commas_recView;
+    RecyclerView recylcerViewComma;
     CardView commasCardView;
     public static JSONArray commasResultSet;
     RecyclerView.LayoutManager commas_rec_layout_mgr;
-
     //private OnFragmentInteractionListener mListener;
 
 
@@ -101,6 +101,16 @@ public class CommasFragment extends Fragment {
             e.printStackTrace();
         }
         commas_recView.setAdapter(adapter);
+        // Touch listener on Commas images.
+        commas_recView.addOnItemTouchListener(
+                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        int c = 0;
+                    }
+                })
+        );
+
         return rootView;
     }
 
@@ -195,4 +205,5 @@ public class CommasFragment extends Fragment {
 //        void onFragmentInteraction(Uri uri);
 //    }
 }
+
 

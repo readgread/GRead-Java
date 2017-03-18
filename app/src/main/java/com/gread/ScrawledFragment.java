@@ -29,7 +29,7 @@ import static com.gread.HomeActivity.appContext;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ScrawledFragment.OnFragmentInteractionListener} interface
+ * {@link //ScrawledFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ScrawledFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -98,6 +98,15 @@ public class ScrawledFragment extends Fragment {
             e.printStackTrace();
         }
         scrawled_recView.setAdapter(adapterReader);
+        // Click listener on images.
+        scrawled_recView.addOnItemTouchListener(
+                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        int c = 0;
+                    }
+                })
+        );
         return rootView;
     }
 

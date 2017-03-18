@@ -29,7 +29,6 @@ import static com.gread.HomeActivity.appContext;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ReaderFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ReaderFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -98,6 +97,15 @@ public class ReaderFragment extends Fragment {
             e.printStackTrace();
         }
         reader_recView.setAdapter(adapterReader);
+        // Touch listener on Reader images
+        reader_recView.addOnItemTouchListener(
+                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        int c = 0;
+                    }
+                })
+        );
         return rootView;
     }
 
