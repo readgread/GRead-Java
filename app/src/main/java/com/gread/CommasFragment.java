@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -43,6 +45,7 @@ public class CommasFragment extends Fragment {
     public ImageView mImageView;
     // TODO: Rename and change types of parameters
     private String mParam1;
+    private FirebaseAnalytics mFireBaseAnalytics;
     private String mParam2;
     RecyclerView commas_recView;
     RecyclerView recylcerViewComma;
@@ -82,6 +85,7 @@ public class CommasFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mFireBaseAnalytics = FirebaseAnalytics.getInstance(appContext);
     }
 
     @Override
@@ -106,7 +110,17 @@ public class CommasFragment extends Fragment {
                 new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // TODO Handle item click
-                        int c = 0;
+
+                        Bundle params = new Bundle();
+                        params.putString("username", mParam1);
+                        params.putString("emailId", mParam2);
+                        params.putString("image", "comma_halfstrokes");
+                        params.putString("pageId", "1");
+                        params.putString("imageId", String.valueOf(commas_recView.getId()));
+                        params.putString("position", String.valueOf(position));
+                        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
+                        mFireBaseAnalytics.logEvent("touch_image", params);
+                        mFireBaseAnalytics.setUserProperty("Comma_readers", mParam1 + "**" + mParam2);
                     }
                 })
         );
@@ -135,10 +149,19 @@ public class CommasFragment extends Fragment {
         }
         catch (MalformedURLException e){
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         } catch (IOException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -149,6 +172,9 @@ public class CommasFragment extends Fragment {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Bundle params = new Bundle();
+                params.putString("exception", e.getMessage());
+                mFireBaseAnalytics.logEvent("exception_comma", params);
             }
 
         }
@@ -162,6 +188,9 @@ public class CommasFragment extends Fragment {
             //System.out.println(allImages.get(0).imageURL);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         }
         return allImages;
     }

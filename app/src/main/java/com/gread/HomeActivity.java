@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     public String storedDisplayName,storedPhotoURL,storedEmail;
     boolean doubleBackToExitPressedOnce = false;
     private ActionBarDrawerToggle drawerToggle;
+    private FirebaseAnalytics mFireBaseAnalytics;
 
 
     @Override
@@ -52,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_drawer);
         ab.setDisplayHomeAsUpEnabled(true);
+        mFireBaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
 
@@ -89,11 +92,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onDrawerClosed(View drawerView) {
                 //getSupportActionBar().setTitle(title);
                 //invalidateOptionsMenu();
+                Bundle params = new Bundle();
+                mFireBaseAnalytics.logEvent("drawer_closed", params);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 ab.setTitle(title);
+                Bundle params = new Bundle();
+                mFireBaseAnalytics.logEvent("drawer_opened", params);
                 //invalidateOptionsMenu();
             }
         };
@@ -116,9 +123,13 @@ public class HomeActivity extends AppCompatActivity {
 
             FragmentManager fragmentManager;
             item.setChecked(true);
+            Bundle params = new Bundle();
+            //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
+            mFireBaseAnalytics.logEvent("item_clicked", params);
             drawerLayout.closeDrawers();
 
             switch (item.getItemId()){
+
 
                 case R.id.home:
                     Fragment homeFragment = HomeFragment.newInstance(storedDisplayName, storedEmail);
@@ -129,6 +140,11 @@ public class HomeActivity extends AppCompatActivity {
                             .commit();
                     isHomeFragShown = true;
                     setTitle("Gread");
+                    Bundle parameters = new Bundle();
+                    params.putString("username", storedDisplayName);
+                    params.putString("emailId", storedEmail);
+                    params.putString("item", item.toString());
+                    mFireBaseAnalytics.logEvent("item_clicked", parameters);
                     break;
 
                 case R.id.commas_drawer_item:
@@ -140,6 +156,11 @@ public class HomeActivity extends AppCompatActivity {
                             .commit();
                     isHomeFragShown = false;
                     setTitle("Commas and Halfstrokes");
+                    parameters = new Bundle();
+                    params.putString("username", storedDisplayName);
+                    params.putString("emailId", storedEmail);
+                    params.putString("item", item.toString());
+                    mFireBaseAnalytics.logEvent("item_clicked", parameters);
                     break;
                 case R.id.readers_drawer_item:
                     Fragment readersFragment = ReaderFragment.newInstance(storedDisplayName, storedEmail);
@@ -150,6 +171,11 @@ public class HomeActivity extends AppCompatActivity {
                             .commit();
                     isHomeFragShown = false;
                     setTitle("Reader's Guild");
+                    parameters = new Bundle();
+                    params.putString("username", storedDisplayName);
+                    params.putString("emailId", storedEmail);
+                    params.putString("item", item.toString());
+                    mFireBaseAnalytics.logEvent("item_clicked", parameters);
                     break;
                 case R.id.scrawled_drawer_item:
                     Fragment scrawledFragment = ScrawledFragment.newInstance(storedDisplayName, storedEmail);
@@ -160,6 +186,11 @@ public class HomeActivity extends AppCompatActivity {
                             .commit();
                     isHomeFragShown = false;
                     setTitle("Scrawled Stories");
+                    parameters = new Bundle();
+                    params.putString("username", storedDisplayName);
+                    params.putString("emailId", storedEmail);
+                    params.putString("item", item.toString());
+                    mFireBaseAnalytics.logEvent("item_clicked", parameters);
                     break;
 
             }
@@ -189,6 +220,11 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
         isHomeFragShown = false;
         setTitle("Commas and Halfstrokes");
+        Bundle params = new Bundle();
+        params.putString("card", "Commas and HalfStrokes");
+        params.putString("username", storedDisplayName);
+        params.putString("emailId", storedEmail);
+        mFireBaseAnalytics.logEvent("card_clicked", params);
     }
 
     public void onClickReadersCard(View v){
@@ -200,6 +236,11 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
         isHomeFragShown = false;
         setTitle("Reader's Guild");
+        Bundle params = new Bundle();
+        params.putString("card", "Reader's Guild");
+        params.putString("username", storedDisplayName);
+        params.putString("emailId", storedEmail);
+        mFireBaseAnalytics.logEvent("card_clicked", params);
     }
 
     public void onClickScrawledCard(View v){
@@ -211,14 +252,22 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
         isHomeFragShown = false;
         setTitle("Scrawled Stories");
+        Bundle params = new Bundle();
+        params.putString("card", "Scrawled Stories");
+        params.putString("username", storedDisplayName);
+        params.putString("emailId", storedEmail);
+        mFireBaseAnalytics.logEvent("card_clicked", params);
     }
 
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
 
-        if(this.drawerLayout.isDrawerOpen(GravityCompat.START))
+        if(this.drawerLayout.isDrawerOpen(GravityCompat.START)){
             this.drawerLayout.closeDrawer(GravityCompat.START);
+        Bundle params = new Bundle();
+        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
+        mFireBaseAnalytics.logEvent("drawer_closed", params);}
         else{
             if(isHomeFragShown){
                 if (doubleBackToExitPressedOnce) {

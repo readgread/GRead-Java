@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -42,7 +44,7 @@ public class ReaderFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private FirebaseAnalytics mFireBaseAnalytics;
     RecyclerView reader_recView;
     public static JSONArray readerResultSet;
     RecyclerView.LayoutManager reader_rev_layout_mgr;
@@ -78,6 +80,7 @@ public class ReaderFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mFireBaseAnalytics = FirebaseAnalytics.getInstance(appContext);
     }
 
     @Override
@@ -101,8 +104,17 @@ public class ReaderFragment extends Fragment {
         reader_recView.addOnItemTouchListener(
                 new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        // TODO Handle item click
-                        int c = 0;
+                        Bundle params = new Bundle();
+                        params.putString("username", mParam1);
+                        params.putString("emailId", mParam2);
+                        params.putString("image", "readers_guild");
+                        params.putString("pageId", "2");
+                        params.putString("imageId", String.valueOf(reader_recView.getId()));
+                        params.putString("position", String.valueOf(position));
+                        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
+                        mFireBaseAnalytics.logEvent("touch_image", params);
+                        mFireBaseAnalytics.setUserProperty("Reader_readers", mParam1 + "**" + mParam2);
+
                     }
                 })
         );
@@ -130,10 +142,19 @@ public class ReaderFragment extends Fragment {
         }
         catch (MalformedURLException e){
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_reader", params);
         } catch (IOException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_reader", params);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_reader", params);
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -144,6 +165,9 @@ public class ReaderFragment extends Fragment {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Bundle params = new Bundle();
+                params.putString("exception", e.getMessage());
+                mFireBaseAnalytics.logEvent("exception_reader", params);
             }
 
         }
@@ -157,6 +181,9 @@ public class ReaderFragment extends Fragment {
             //System.out.println(allImages.get(0).imageURL);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_reader", params);
         }
         return allImages;
     }
