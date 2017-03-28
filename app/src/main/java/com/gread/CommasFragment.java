@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +33,6 @@ import static com.gread.HomeActivity.appContext;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CommasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link CommasFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -40,15 +42,16 @@ public class CommasFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    public ImageView mImageView;
     // TODO: Rename and change types of parameters
     private String mParam1;
+    private FirebaseAnalytics mFireBaseAnalytics;
     private String mParam2;
     RecyclerView commas_recView;
+    RecyclerView recylcerViewComma;
     CardView commasCardView;
     public static JSONArray commasResultSet;
     RecyclerView.LayoutManager commas_rec_layout_mgr;
-
     //private OnFragmentInteractionListener mListener;
 
 
@@ -82,6 +85,7 @@ public class CommasFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mFireBaseAnalytics = FirebaseAnalytics.getInstance(appContext);
     }
 
     @Override
@@ -101,6 +105,26 @@ public class CommasFragment extends Fragment {
             e.printStackTrace();
         }
         commas_recView.setAdapter(adapter);
+        // Touch listener on Commas images.
+        commas_recView.addOnItemTouchListener(
+                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+
+                        Bundle params = new Bundle();
+                        params.putString("username", mParam1);
+                        params.putString("emailId", mParam2);
+                        params.putString("image", "comma_halfstrokes");
+                        params.putString("pageId", "1");
+                        params.putString("imageId", String.valueOf(commas_recView.getId()));
+                        params.putString("position", String.valueOf(position));
+                        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
+                        mFireBaseAnalytics.logEvent("touch_image", params);
+                        mFireBaseAnalytics.setUserProperty("Comma_readers", mParam1 + "**" + mParam2);
+                    }
+                })
+        );
+
         return rootView;
     }
 
@@ -125,10 +149,19 @@ public class CommasFragment extends Fragment {
         }
         catch (MalformedURLException e){
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         } catch (IOException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -139,6 +172,9 @@ public class CommasFragment extends Fragment {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Bundle params = new Bundle();
+                params.putString("exception", e.getMessage());
+                mFireBaseAnalytics.logEvent("exception_comma", params);
             }
 
         }
@@ -152,6 +188,9 @@ public class CommasFragment extends Fragment {
             //System.out.println(allImages.get(0).imageURL);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_comma", params);
         }
         return allImages;
     }
@@ -195,4 +234,5 @@ public class CommasFragment extends Fragment {
 //        void onFragmentInteraction(Uri uri);
 //    }
 }
+
 

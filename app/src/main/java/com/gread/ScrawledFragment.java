@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -29,7 +31,7 @@ import static com.gread.HomeActivity.appContext;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ScrawledFragment.OnFragmentInteractionListener} interface
+ * {@link //ScrawledFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ScrawledFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -44,6 +46,7 @@ public class ScrawledFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private FirebaseAnalytics mFireBaseAnalytics;
     RecyclerView scrawled_recView;
     public static JSONArray scrawledResultSet;
     RecyclerView.LayoutManager scrawled_rev_layout_mgr;
@@ -79,6 +82,7 @@ public class ScrawledFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mFireBaseAnalytics = FirebaseAnalytics.getInstance(appContext);
     }
 
     @Override
@@ -98,6 +102,23 @@ public class ScrawledFragment extends Fragment {
             e.printStackTrace();
         }
         scrawled_recView.setAdapter(adapterReader);
+        // Click listener on images.
+        scrawled_recView.addOnItemTouchListener(
+                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Bundle params = new Bundle();
+                        params.putString("username", mParam1);
+                        params.putString("emailId", mParam2);
+                        params.putString("image", "scarwled_stories");
+                        params.putString("pageId", "3");
+                        params.putString("imageId", String.valueOf(scrawled_recView.getId()));
+                        params.putString("position", String.valueOf(position));
+                        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
+                        mFireBaseAnalytics.logEvent("touch_image", params);
+                        mFireBaseAnalytics.setUserProperty("Scrawled_readers", mParam1 + "**" + mParam2);
+                    }
+                })
+        );
         return rootView;
     }
 
@@ -122,10 +143,19 @@ public class ScrawledFragment extends Fragment {
         }
         catch (MalformedURLException e){
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_scrawled", params);
         } catch (IOException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_scrawled", params);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_scrawled", params);
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -136,6 +166,9 @@ public class ScrawledFragment extends Fragment {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Bundle params = new Bundle();
+                params.putString("exception", e.getMessage());
+                mFireBaseAnalytics.logEvent("exception_scrawled", params);
             }
 
         }
@@ -149,6 +182,9 @@ public class ScrawledFragment extends Fragment {
             //System.out.println(allImages.get(0).imageURL);
         } catch (JSONException e) {
             e.printStackTrace();
+            Bundle params = new Bundle();
+            params.putString("exception", e.getMessage());
+            mFireBaseAnalytics.logEvent("exception_scrawled", params);
         }
         return allImages;
     }
