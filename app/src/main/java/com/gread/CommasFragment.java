@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -108,8 +109,10 @@ public class CommasFragment extends Fragment {
         // Touch listener on Commas images.
         commas_recView.addOnItemTouchListener(
                 new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                    @Override public void onItemClick(View view, int position) throws JSONException {
                         // TODO Handle item click
+
+                        Toast.makeText(appContext, "The image is "+commasResultSet.getString(position), Toast.LENGTH_SHORT).show();
 
                         Bundle params = new Bundle();
                         params.putString("username", mParam1);
