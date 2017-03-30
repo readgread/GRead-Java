@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class CommasAdapter extends RecyclerView.Adapter<CommasHolder> {
     LayoutInflater cardInflater;
     List<ImageParser> images = Collections.emptyList();
+
 
     public CommasAdapter(Context context, List<ImageParser> myImages)
     {
@@ -50,9 +52,22 @@ public class CommasAdapter extends RecyclerView.Adapter<CommasHolder> {
 
 class CommasHolder extends RecyclerView.ViewHolder{
     SimpleDraweeView commasImage;
-
+    ImageView mImageView;
     public CommasHolder(View cardView){
         super(cardView);
         commasImage = (SimpleDraweeView) cardView.findViewById(R.id.cardview_image);
+
+        mImageView = (ImageView) cardView.findViewById(R.id.share_icon_id_comma);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // do stuff
+                int c = 0;
+                // mPosition gives the position of the share icon clicked
+            }
+
+        });
+
     }
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -81,6 +82,7 @@ public class CommasFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -93,9 +95,20 @@ public class CommasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_commas, container, false);
+
         commas_recView = ((RecyclerView)rootView.findViewById(R.id.commas_recycler));
         commas_rec_layout_mgr = new LinearLayoutManager(appContext);
         commas_recView.setLayoutManager(commas_rec_layout_mgr);
+//        mImageView = (ImageView) rootView.findViewById(R.id.share_icon_id_comma);
+//        mImageView.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                // do stuff
+//                int c = 0;
+//            }
+//
+//        });
         CommasAdapter adapter = null;
         try {
             adapter = new CommasAdapter(appContext, getImages());
@@ -108,8 +121,10 @@ public class CommasFragment extends Fragment {
         // Touch listener on Commas images.
         commas_recView.addOnItemTouchListener(
                 new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                    @Override public void onItemClick(View view, int position) throws JSONException {
                         // TODO Handle item click
+
+                        Toast.makeText(appContext, "The image is "+commasResultSet.getString(position), Toast.LENGTH_SHORT).show();
 
                         Bundle params = new Bundle();
                         params.putString("username", mParam1);
@@ -124,7 +139,6 @@ public class CommasFragment extends Fragment {
                     }
                 })
         );
-
         return rootView;
     }
 
@@ -234,5 +248,3 @@ public class CommasFragment extends Fragment {
 //        void onFragmentInteraction(Uri uri);
 //    }
 }
-
-

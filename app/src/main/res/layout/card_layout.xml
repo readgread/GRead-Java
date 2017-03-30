@@ -15,5 +15,16 @@
         android:id="@+id/cardview_image"
         card_view:placeholderImage="@drawable/action_search"
         card_view:actualImageScaleType="fitCenter"/>
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/share_icon_id_comma"
+        android:src="@drawable/share_icon"
+        android:clickable="true"
+        android:layout_marginTop="310dp"
+        android:layout_marginLeft="50dp"
+        >
+
+    </ImageView>
 
 </android.support.v7.widget.CardView>
