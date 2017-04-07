@@ -1,6 +1,7 @@
 package com.gread;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -124,6 +125,12 @@ public class CommasFragment extends Fragment {
                         //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
                         mFireBaseAnalytics.logEvent("touch_image", params);
                         mFireBaseAnalytics.setUserProperty("Comma_readers", mParam1 + "**" + mParam2);
+
+                        Fragment imageFragment = ImageFragment.newInstance(commasResultSet.getString(position), "http://139.59.19.54/comma50/");
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.content_frame, imageFragment)
+                                .commit();
                     }
                 })
         );
