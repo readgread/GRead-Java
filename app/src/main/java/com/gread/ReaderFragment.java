@@ -100,24 +100,6 @@ public class ReaderFragment extends Fragment {
             e.printStackTrace();
         }
         reader_recView.setAdapter(adapterReader);
-        // Touch listener on Reader images
-        reader_recView.addOnItemTouchListener(
-                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        Bundle params = new Bundle();
-                        params.putString("username", mParam1);
-                        params.putString("emailId", mParam2);
-                        params.putString("image", "readers_guild");
-                        params.putString("pageId", "2");
-                        params.putString("imageId", String.valueOf(reader_recView.getId()));
-                        params.putString("position", String.valueOf(position));
-                        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
-                        mFireBaseAnalytics.logEvent("touch_image", params);
-                        mFireBaseAnalytics.setUserProperty("Reader_readers", mParam1 + "**" + mParam2);
-
-                    }
-                })
-        );
         return rootView;
     }
 

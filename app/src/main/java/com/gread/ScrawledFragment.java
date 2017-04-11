@@ -102,23 +102,6 @@ public class ScrawledFragment extends Fragment {
             e.printStackTrace();
         }
         scrawled_recView.setAdapter(adapterReader);
-        // Click listener on images.
-        scrawled_recView.addOnItemTouchListener(
-                new RecyclerItemClickListener(appContext, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        Bundle params = new Bundle();
-                        params.putString("username", mParam1);
-                        params.putString("emailId", mParam2);
-                        params.putString("image", "scarwled_stories");
-                        params.putString("pageId", "3");
-                        params.putString("imageId", String.valueOf(scrawled_recView.getId()));
-                        params.putString("position", String.valueOf(position));
-                        //params.putString("imageURL", commas_recView.getAdapter().images.get(position).imageURL);
-                        mFireBaseAnalytics.logEvent("touch_image", params);
-                        mFireBaseAnalytics.setUserProperty("Scrawled_readers", mParam1 + "**" + mParam2);
-                    }
-                })
-        );
         return rootView;
     }
 

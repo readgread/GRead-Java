@@ -28,6 +28,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         signingConfig signingConfigs.gread_release
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         customDebuggableBuildType {
@@ -71,5 +72,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.0.0'
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.facebook.fresco:fresco:1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 }
 apply plugin: 'com.google.gms.google-services'
